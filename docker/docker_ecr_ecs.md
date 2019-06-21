@@ -2,7 +2,7 @@
 
 ## Dockerイメージの開発
 
-Cloud9を起動
+Cloud9の環境を起動
 
 Dockerfileを作成
 
@@ -16,7 +16,7 @@ EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
 ```
 
-イメージをビルド
+イメージをビルド（`web`というタグを付ける）
 
 ```
 docker build -t web .
@@ -24,18 +24,24 @@ docker build -t web .
 
 コンテナを実行
 
-注：--name webでコンテナにwebという名前をつける。末尾のwebはイメージ名。
+注：`--name web`でコンテナに`web`という名前をつける。末尾の`web`はタグ。
 
 ```
 docker run -d -p 8080:80 --name web web
 ```
 
-Cloud9のメニュー→Preview→Preview Running Applicationを中クリックで開いて動作確認。
+Cloud9のメニュー→[Preview]→[Preview Running Application]を中クリックで開いて動作確認。
 
 コンテナを停止
 
 ```
 docker stop web
+```
+
+コンテナを削除
+
+```
+docker rm web
 ```
 
 
