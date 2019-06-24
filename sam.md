@@ -30,4 +30,10 @@ sam package --s3-bucket deploy-1234 --output-template-file packaged.yaml
 
 # deployにより、Lambda関数、API Gateway、IAMロールが作られる。
 sam deploy --template-file packaged.yaml --stack-name stack1 --capabilities CAPABILITY_IAM  
+
+# ログを表示
+sam logs -n HelloFunction --stack-name stack1
+sam logs -n HelloFunction --stack-name stack1 --tail
+
+
 ```
