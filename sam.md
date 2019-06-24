@@ -80,3 +80,49 @@ Resources:
     Type: AWS::S3::Bucket
 ```
 
+テンプレート例3: S3, DynamoDB連携。画像を認識して「#猫」といったハッシュタグをつける
+```
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: myapp
+
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello/
+      Handler: hello.lambda_handler
+      Runtime: python3.6
+      Timeout: 30
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ImageTable
+      Policies:
+        - AmazonS3FullAccess
+        - AmazonDynamoDBFullAccess
+        - AmazonRekognitionFullAccess
+        - TranslateFullAccess
+        - AWSLambdaBasicExecutionRole
+      Events:
+        PhotoUpload:
+          Type: S3
+          Properties:
+            Bucket: !Ref PhotoBucket
+            Events: s3:ObjectCreated:*
+  PhotoBucket:
+    Type: AWS::S3::Bucket
+  ImageTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: images
+      KeySchema:
+        - AttributeName: key
+          KeyType: HASH
+      AttributeDefinitions:
+        - AttributeName: key
+          AttributeType: S
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5   
+```
+
