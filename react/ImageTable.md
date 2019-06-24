@@ -1,6 +1,9 @@
-App.jsに,ListImages APIの設定を追記
+App.jsに,import文と、ListImages APIの設定を追記
 
 ```
+import { API } from 'aws-amplify';
+import { S3Image } from 'aws-amplify';
+
 Amplify.configure({
   API: {
     endpoints: [
@@ -61,7 +64,7 @@ ImageTableの描画部分をAppに追加
 function App() {
   ...
         <ImageUpload />
-        <ListImages />
+        <ImageTable />
   ...
 }
 ```
