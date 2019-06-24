@@ -35,7 +35,7 @@ aws-cli/1.16.169 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.1
 $ sudo pip install --upgrade awscli
 
 $ aws --version
-aws-cli/1.16.180 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.170
+aws-cli/1.16.184 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.174
 
 $ npm --version
 6.4.1
@@ -49,9 +49,13 @@ $ npm install -g yarn
 
 $ yarn --version
 1.16.0
+```
 
-# https://yarnpkg.com/en/docs/cli/global
-# Adding the install location to your PATH
+yarn global addでインストールされたアプリケーションを起動できるようにする
+https://yarnpkg.com/en/docs/cli/global
+Adding the install location to your PATH
+
+```
 $ echo 'export PATH="$(yarn global bin):$PATH"'>>~/.bashrc 
 $ exec $SHELL -l
 ```
