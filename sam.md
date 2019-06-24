@@ -44,6 +44,10 @@ sam logs -n HelloFunction --stack-name stack1 --tail
 
 テンプレート例1: HelloWorld
 ```
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: myapp
+
 Resources:
   HelloFunction:
     Type: AWS::Serverless::Function
@@ -55,6 +59,10 @@ Resources:
 
 テンプレート例2: S3との連動
 ```
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: myapp
+
 Resources:
   HelloFunction:
     Type: AWS::Serverless::Function
