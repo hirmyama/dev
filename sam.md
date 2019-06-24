@@ -1,3 +1,7 @@
+https://github.com/awslabs/serverless-application-model
+
+https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md
+
 ```sh
 sudo pip install --upgrade pip
 sudo pip install --upgrade aws-sam-cli
@@ -37,3 +41,34 @@ sam logs -n HelloFunction --stack-name stack1 --tail
 
 
 ```
+
+テンプレート例1: HelloWorld
+```
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello/
+      Handler: hello.lambda_handler
+      Runtime: python3.6
+```
+
+テンプレート例2: S3との連動
+```
+Resources:
+  HelloFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: hello/
+      Handler: hello.lambda_handler
+      Runtime: python3.6
+      Events:
+        PhotoUpload:
+          Type: S3
+          Properties:
+            Bucket: !Ref PhotoBucket
+            Events: s3:ObjectCreated:*
+  PhotoBucket:
+    Type: AWS::S3::Bucket
+```
+
