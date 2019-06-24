@@ -17,12 +17,20 @@ cd myapp
 # myapp/hello_world/app.py ... Lambda関数のコード
 # myapp/hello_world/requirements.txt ... Lambda関数の依存関係
 
+# package.yamlの検証
+sam validate
+
 # ビルドする。myapp/.aws-samディレクトリが作られる。
 sam build
+
+# サンプルイベントを生成
+sam local generate-event s3 put > event.json
 
 # ローカルで関数を実行。
 #「lambci/lambda:python3.6」というDocker Imageから作られたコンテナ内で実行される。
 sam local invoke --no-event
+sam local invoke --event event.json
+sam local generate-event s3 put | sam local invoke
 
 # パッケージ用のバケットを作成。バケット名は適宜変更してください
 aws s3 mb s3://deploy-1234
