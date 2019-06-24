@@ -2,7 +2,7 @@ App.jsに,import文と、ListImages APIの設定を追記
 
 ```
 import { API } from 'aws-amplify';
-import { S3Image } from 'aws-amplify';
+import { S3Image } from 'aws-amplify-react';
 
 Amplify.configure({
   API: {
@@ -25,7 +25,6 @@ class ImageTable extends React.Component {
   constructor(prop) {
     super(prop);
     
-    
     API.get("hello", "/hello").then(response => {
       console.log("response start");
       console.log(response);
@@ -42,21 +41,27 @@ class ImageTable extends React.Component {
     return (
       <table>
         <tbody>
-        {this.state.images.map(entry=><ImageRow objkey={entry.key} tags={entry.tags} />)}
-      </tbody>
-    </table>
-  )}
+        {this.state.images.map((entry)=><ImageRow objkey={entry['key'].replace('public/', '')} tags={entry.tags} />)}
+        </tbody>
+      </table>
+    );
+  }
 }
 
 class ImageRow extends React.Component {
-  
+  constructor(prop) {
+    super(prop);
+  }
   render() { 
-    return <tr>
-      <td className='images'><S3Image imgKey={this.props.objkey} /></td>
-      <td className='image-tags'>{this.props.tags}</td>
-    </tr>;
+    return (
+      <tr>
+        <td className='images'><S3Image imgKey={this.props.objkey} />{this.props.objkey}</td>
+        <td className='image-tags'>{this.props.tags}</td>
+      </tr>
+    );
   }
 }
+
 ```
 
 ImageTableの描画部分をAppに追加
