@@ -1,5 +1,6 @@
 ```sh
-sudo pip install --update aws-sam-cli
+sudo pip install --upgrade pip
+sudo pip install --upgrade aws-sam-cli
 
 sam --version
 
@@ -7,14 +8,26 @@ sam init --runtime python3.6 --name myapp
 
 cd myapp
 
-# myapp/hello_world/app.pyを確認（編集）
+# 主なファイル: 
+# myapp/template.yaml ... テンプレートファイル。
+# myapp/hello_world/app.py ... Lambda関数のコード
+# myapp/hello_world/requirements.txt ... Lambda関数の依存関係
 
+# ビルドする。myapp/.aws-samディレクトリが作られる。
 sam build
 
-aws s3 mb s3://deploy-123456
+# ローカルで関数を実行。
+#「lambci/lambda:python3.6」というDocker Imageから作られたコンテナ内で実行される。
+sam local invoke --no-event
 
-sam package --s3-bucket deploy-123456 --output-template-file packaged.yml   
+# パッケージ用のバケットを作成。バケット名は適宜変更してください
+aws s3 mb s3://deploy-1234
 
-sam deploy --template-file packaged.yml --stack-name stack1 --capabilities CAPABILITY_IAM  
+# packageにより、指定したバケットにリソースがアップロードされる。
+# また、packaged.yamlに、template.yamlの内容が転記される。
+# このときCodeUriがローカルからS3のパスに変更される。
+sam package --s3-bucket deploy-1234 --output-template-file packaged.yaml  
+
+# deployにより、Lambda関数、API Gateway、IAMロールが作られる。
+sam deploy --template-file packaged.yaml --stack-name stack1 --capabilities CAPABILITY_IAM  
 ```
-
