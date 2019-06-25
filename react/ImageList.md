@@ -53,3 +53,16 @@ def lambda_handler(event, context):
         "body": json.dumps(items, ensure_ascii=False)
     }
 ```
+
+```
+STACK_NAME='list-images'
+CURRENT_DATETIME=`date +'%Y%m%d%H%M%S'`
+DEPLOY_BUCKET="$STACK_NAME-$CURRENT_DATETIME"
+
+aws s3 mb s3://$DEPLOY_BUCKET
+
+sam build
+sam package --output-template-file packaged.yaml --s3-bucket $DEPLOY_BUCKET
+sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
+```
+
