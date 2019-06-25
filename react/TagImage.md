@@ -1,3 +1,8 @@
+```
+sam init --runtime python3.6 --name tag-image
+cd tag-image
+```
+
 `template.yaml`
 
 ```
@@ -33,16 +38,19 @@ Resources:
   ImageTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      #TableName: images
       KeySchema:
-        - AttributeName: key
+        - AttributeName: ObjectKey
           KeyType: HASH
+        - AttributeName: EventTime
+          KeyType: RANGE
       AttributeDefinitions:
-        - AttributeName: key
+        - AttributeName: ObjectKey
+          AttributeType: S
+        - AttributeName: EventTime
           AttributeType: S
       ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5  
+        ReadCapacityUnits: 20
+        WriteCapacityUnits: 10
 ```
 
 hello_world/app.py
@@ -76,12 +84,13 @@ def detect_labels(bucket, key):
 
 def lambda_handler(event, context):
     for record in event['Records']:
+        event_time = record['eventTime']
         bucket = record['s3']['bucket']['name']
         key = record['s3']['object']['key']
         labels = detect_labels(bucket, key)
         labels_str = ' '.join(['#' + label.replace('[', '').replace(']', '') for label in labels])
         table_name = os.environ.get('TABLE_NAME')
-        dynamodb.Table(table_name).put_item(Item={'key': key, 'tags': labels_str})
+        dynamodb.Table(table_name).put_item(Item={'S3Key': key, 'EventTime': event_time, 'Tags': labels_str})
     return {
         'statusCode': 200,
         'body': json.dumps(labels)
