@@ -125,7 +125,7 @@ $ amplify push
 `myapp/src/App.js`のimportとfunctionの間に以下を追記
 
 ```
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import { withAuthenticator } from 'aws-amplify-react';
 import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
