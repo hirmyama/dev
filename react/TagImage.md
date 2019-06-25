@@ -90,7 +90,7 @@ def lambda_handler(event, context):
         labels = detect_labels(bucket, key)
         labels_str = ' '.join(['#' + label.replace('[', '').replace(']', '') for label in labels])
         table_name = os.environ.get('TABLE_NAME')
-        dynamodb.Table(table_name).put_item(Item={'S3Key': key, 'EventTime': event_time, 'Tags': labels_str})
+        dynamodb.Table(table_name).put_item(Item={'ObjectKey': key, 'EventTime': event_time, 'Tags': labels_str})
     return {
         'statusCode': 200,
         'body': json.dumps(labels)
