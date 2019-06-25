@@ -3,7 +3,7 @@ https://github.com/awslabs/serverless-application-model
 https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md
 
 ```sh
-sudo pip install --upgrade pip
+
 sudo pip install --upgrade aws-sam-cli
 
 sam --version
