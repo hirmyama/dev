@@ -1,7 +1,8 @@
 DynamoDBテーブル`images`を作成。パーティションキー: `key`
 
 ```
-$ sam init --runtime python3.6 --name ListImages
+sam init --runtime python3.6 --name list-images
+cd list-images
 ```
 
 template.yamlを一部書き換え
