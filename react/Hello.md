@@ -1,4 +1,4 @@
-# API Gateway + Amplify API (REST)
+# SAM(API Gateway + Lambda) + Amplify API (REST)
 
 ```
 sam init --runtime python3.6 --name hello
