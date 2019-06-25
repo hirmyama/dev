@@ -9,12 +9,10 @@ template.yamlを一部書き換え
 ```
 Globals:
   Api:
-    # Corsを追加
     Cors:
-      AllowMethods: "'*'"
-      AllowHeaders: "'*'"
+      AllowMethods: "'OPTIONS,POST,GET'"
+      AllowHeaders: "'authorization,x-amz-date,x-amz-security-token'"
       AllowOrigin: "'*'"
-      AllowCredentials: "'true'"
 
 Resources:
   HelloWorldFunction:
