@@ -45,7 +45,8 @@ $ npm install -g npm
 $ npm --version
 6.9.0
 
-$ npm install -g yarn
+$ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+$ sudo yum install -y yarn
 
 $ yarn --version
 1.16.0
@@ -56,8 +57,8 @@ https://yarnpkg.com/en/docs/cli/global
 Adding the install location to your PATH
 
 ```
-$ echo 'export PATH="$(yarn global bin):$PATH"'>>~/.bashrc 
-$ exec $SHELL -l
+$ echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
+$ bash -l
 ```
 
 ## create-react-appコマンドによるReactアプリの作成
