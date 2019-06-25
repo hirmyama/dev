@@ -1,4 +1,3 @@
-DynamoDBテーブル`images`を作成。パーティションキー: `key`
 
 ```
 sam init --runtime python3.6 --name list-images
@@ -33,6 +32,7 @@ Resources:
 ```
 
 hello_world/app.pyを次のように変更
+imagesの部分は、前工程で生成されたDynamoDBテーブル名にする
 
 ```
 import json
