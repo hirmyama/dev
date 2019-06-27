@@ -6,19 +6,20 @@ $ touch ~/environment/myapp/src/ImageTable.js
 
 ImageTable.jsを開く。
 
-下記の内容を記入する。
+下記の内容を記入する。`endpoint: `の部分には、前の工程で作成したAPIのURLを書き込む。
 
 ```
 import React from 'react';
 import Amplify from 'aws-amplify';
 import { API } from 'aws-amplify';
+import { S3Image } from 'aws-amplify-react';
 
 Amplify.configure({
   API: {
     endpoints: [
       {
         name: "hello",
-        endpoint: "https://hq9ps9iptk.execute-api.ap-northeast-1.amazonaws.com/Prod"
+        endpoint: "https://6q5iyrihae.execute-api.ap-northeast-1.amazonaws.com/Prod/hello" // エンドポイントのURLを""内に記入
       },
     ]
   }
@@ -31,7 +32,7 @@ class ImageTable extends React.Component {
   constructor(prop) {
     super(prop);
     
-    API.get("hello", "/hello").then(response => {
+    API.get("hello", "").then(response => {
       console.log("response start");
       console.log(response);
       console.log("response end");
@@ -47,7 +48,7 @@ class ImageTable extends React.Component {
     return (
       <table>
         <tbody>
-        {this.state.images.map((entry)=><ImageRow objkey={entry['key'].replace('public/', '')} tags={entry.tags} />)}
+        {this.state.images.map((entry)=><ImageRow ObjectKey={entry['ObjectKey'].replace('public/', '')} Tags={entry.Tags} />)}
         </tbody>
       </table>
     );
@@ -61,8 +62,8 @@ class ImageRow extends React.Component {
   render() { 
     return (
       <tr>
-        <td className='images'><S3Image imgKey={this.props.objkey} />{this.props.objkey}</td>
-        <td className='image-tags'>{this.props.tags}</td>
+        <td className='images'><S3Image imgKey={this.props.ObjectKey} />{this.props.ObjectKey}</td>
+        <td className='image-tags'>{this.props.Tags}</td>
       </tr>
     );
   }
@@ -70,6 +71,10 @@ class ImageRow extends React.Component {
 
 export default ImageTable;
 ```
+
+ファイルを保存する。
+
+確認：エンドポイントのURLをファイル内に書き込みましたか？
 
 `App.js`を開く。ファイル先頭のimport部分に下記を追加
 ```
