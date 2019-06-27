@@ -7,6 +7,4 @@
 1. [画像に自動でタグを付ける機能の作成](TagImage.md)
 1. [画像情報を取得するAPIの作成](ImageList.md)
 1. [画像一覧機能の作成](ImageTable.md)
-1. [Webアプリケーションの一般公開]
-
-
+1. [Webアプリケーションの一般公開](publish.md)
