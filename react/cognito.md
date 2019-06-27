@@ -35,6 +35,7 @@ Amplify.configure(awsconfig);
 // export default App;
 export default withAuthenticator(App, {includeGreetings: true});
 ```
+ファイルを保存
 
 開発サーバーを起動
 
