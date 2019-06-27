@@ -18,6 +18,8 @@ https://www.npmjs.com/
 Yarn: Facebook社による依存性管理 / 開発用コマンド実行ツール
 https://yarnpkg.com/lang/ja/
 
+AWS SAM: サーバーレスアプリケーションをすばやく作成
+https://aws.amazon.com/jp/serverless/sam/
 
 # 使用するコマンドのインストール/最新化
 
@@ -98,3 +100,13 @@ $ amplify --version
 1.7.6
 ```
 
+## SAM
+```
+$ sam --version
+SAM CLI, version 0.8.0
+
+$ sudo pip install --upgrade aws-sam-cli
+
+$ sam --version
+SAM CLI, version 0.17.0
+```
