@@ -19,7 +19,7 @@ Yarn: Facebook社による依存性管理 / 開発用コマンド実行ツール
 https://yarnpkg.com/lang/ja/
 
 
-# 使用するコマンドの最新化
+# 使用するコマンドのインストール/最新化
 
 以下、Cloud9環境のTerminal(bash)内で実行。「$」以降から行末までをコピー・ペーストして実行する。
 
@@ -31,12 +31,18 @@ $ aws --version
 aws-cli/1.16.169 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.159
 
 $ sudo pip install --upgrade awscli
-
-$ aws --version
-aws-cli/1.16.184 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.174
 ```
 
 注意：このとき`You should consider upgrading via the 'pip install --upgrade pip' command.`と表示されるが、pipのupgradeは実行しないこと。
+
+```
+$ aws --version
+aws-cli/1.16.184 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.174
+
+$ aws configure set default.region ap-northeast-1
+
+$ aws configure set default.output json
+```
 
 ## npm
 
@@ -79,3 +85,16 @@ $ yarn global add create-react-app
 $ create-react-app --version
 3.0.1
 ```
+
+
+## Amplify CLI
+
+参考：`@` がついているのは NPM の 'scoped packages'である。https://docs.npmjs.com/about-scopes
+
+```
+$ yarn global add @aws-amplify/cli
+
+$ amplify --version
+1.7.6
+```
+
