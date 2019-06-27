@@ -54,6 +54,7 @@ $ npm --version
 
 ```
 $ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+
 $ sudo yum install -y yarn
 
 $ yarn --version
@@ -67,10 +68,14 @@ Adding the install location to your PATH
 
 ```
 $ echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
+
 $ bash -l
 ```
 
 ## create-react-app
 ```
 $ yarn global add create-react-app
+
+$ create-react-app --version
+3.0.1
 ```
