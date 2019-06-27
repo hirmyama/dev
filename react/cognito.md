@@ -29,9 +29,10 @@ import awsconfig from './aws-exports';
 Amplify.configure(awsconfig);
 ```
 
-`myapp/src/App.js`の末尾のexport文を以下のように書き換え
+`myapp/src/App.js`の末尾の`export default App;`部分を以下のように書き換え
 
 ```
+// export default App;
 export default withAuthenticator(App, {includeGreetings: true});
 ```
 
