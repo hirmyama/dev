@@ -20,3 +20,10 @@ Current Environment: dev
 | Auth     | myapp4d066d9c   | No Change | awscloudformation |
 ? Are you sure you want to continue? Yes
 ```
+
+
+```
+Your app is published successfully.
+http://myapp-20190627042100-hostingbucket-dev.s3-website-ap-northeast-1.amazonaws.com
+```
+
