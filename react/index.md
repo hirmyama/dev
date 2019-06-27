@@ -5,7 +5,8 @@
 1. [画像アップロード用のS3バケットの作成](bucket.md)
 1. [画像アップロード機能の追加](ImageUpload.md)
 1. [画像に自動でタグを付ける機能の作成](TagImage.md)
-1. [画像一覧機能の作成]
+1. [画像情報を取得するAPIの作成](ImageList.md)
+1. [画像一覧機能の作成](ImageTable.md)
 1. [Webアプリケーションの一般公開]
 
-ImageList.md
+
