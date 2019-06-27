@@ -37,10 +37,9 @@ Resources:
         - AWSLambdaBasicExecutionRole
       Events:
         PhotoUpload:
-          Type: S3
+          Type: SNS
           Properties:
-            Bucket: !Ref PhotoBucket
-            Events: s3:ObjectCreated:*
+            Topic: !ImportValue MyTopicArn
   PhotoBucket:
     Type: AWS::S3::Bucket
   ImageTable:
@@ -89,13 +88,15 @@ def detect_labels(bucket, key):
 
 def lambda_handler(event, context):
     for record in event['Records']:
-        event_time = record['eventTime']
-        bucket = record['s3']['bucket']['name']
-        key = record['s3']['object']['key']
-        labels = detect_labels(bucket, key)
-        labels_str = ' '.join(['#' + label.replace('[', '').replace(']', '') for label in labels])
-        table_name = os.environ.get('TABLE_NAME')
-        dynamodb.Table(table_name).put_item(Item={'ObjectKey': key, 'EventTime': event_time, 'Tags': labels_str})
+        s3event = json.loads(record['Sns']['Message'])
+        for s3record in s3event['Records']:
+            event_time = s3record['eventTime']
+            bucket = s3record['s3']['bucket']['name']
+            key = s3record['s3']['object']['key']
+            labels = detect_labels(bucket, key)
+            labels_str = ' '.join(['#' + label.replace('[', '').replace(']', '') for label in labels])
+            table_name = os.environ.get('TABLE_NAME')
+            dynamodb.Table(table_name).put_item(Item={'ObjectKey': key, 'EventTime': event_time, 'Tags': labels_str})
     return {
         'statusCode': 200,
         'body': json.dumps(labels)
