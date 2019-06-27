@@ -7,7 +7,7 @@ AWSマンガ
 https://aws.amazon.com/jp/campaigns/manga/vol2-3/
 
 1. マネジメントコンソールにログイン
-1. 画面右上のリージョン表示（[サポート]の左）が東京なっていなければ、クリックして[アジアパシフィック（東京）]に設定
+1. 画面右上のリージョン表示（[サポート]の左）が[東京]になっていなければ、クリックして[アジアパシフィック（東京）]に設定
 1. サービス＞Cloud9
 1. [Create Environment]
 1. Name: `environment`, [Next Step]
