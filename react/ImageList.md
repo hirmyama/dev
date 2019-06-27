@@ -83,3 +83,32 @@ $ sam package --output-template-file packaged.yaml --s3-bucket $DEPLOY_BUCKET
 $ sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
 ```
 
+スタックの作成の完了を待つ（下記コマンドを打ち込むとしばらく待機状態になる。次の$が表示されてコマンドが打ち込める状態になるまで待つ）
+```
+$ aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
+```
+
+作成されたAPIのURLを確認する。
+```
+$ aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[].Outputs[]'
+[
+    {
+        "Description": "Implicit IAM Role created for Hello World function", 
+        "OutputKey": "HelloWorldFunctionIamRole", 
+        "OutputValue": "arn:aws:iam::328243927296:role/list-images-HelloWorldFunctionRole-12XND8Z3FN6W0"
+    }, 
+    {
+        "Description": "API Gateway endpoint URL for Prod stage for Hello World function", 
+        "OutputKey": "HelloWorldApi", 
+        "OutputValue": "https://6q5iyrihae.execute-api.ap-northeast-1.amazonaws.com/Prod/hello/"
+    }, 
+    {
+        "Description": "Hello World Lambda Function ARN", 
+        "OutputKey": "HelloWorldFunction", 
+        "OutputValue": "arn:aws:lambda:ap-northeast-1:328243927296:function:list-images-HelloWorldFunction-1SJF79FIQSBGB"
+    }
+]
+```
+上記出力中の中央部分に、`https://`で始まるURLがある。
+
+URLをクリックして、`Open`を選択すると、別タブでそのURLが開かれる。アップロードされた画像の情報をJSON形式で取得することができる。
