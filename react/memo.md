@@ -20,3 +20,9 @@ S3 Corsの設定
 </CORSRule>
 </CORSConfiguration>
 ```
+
+Cloud9ではAWS managed temporary credentialsを使用する。この権限ではIAMの一部の操作が制限される。
+
+```
+AUTH_ROLE_ARN=$(aws iam list-roles --query 'Roles[?contains(to_string(RoleName),`-authRole`)].RoleName' --output text)
+```
