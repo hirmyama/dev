@@ -7,3 +7,16 @@ $ amplify hosting add
 ? index doc for the website index.html
 ? error doc for the website index.html
 ```
+
+
+```
+$ amplify publish
+
+Current Environment: dev
+
+| Category | Resource name   | Operation | Provider plugin   |
+| -------- | --------------- | --------- | ----------------- |
+| Hosting  | S3AndCloudFront | Create    | awscloudformation |
+| Auth     | myapp4d066d9c   | No Change | awscloudformation |
+? Are you sure you want to continue? Yes
+```
