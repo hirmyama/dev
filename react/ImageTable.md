@@ -69,10 +69,14 @@ class ImageRow extends React.Component {
 }
 
 export default ImageTable;
-
 ```
 
-`App.js`を開き、`<ImageUpload/>` と `<header className="App-header">`の間に下記1行を追加
+`App.js`を開く。ファイル先頭のimport部分に下記を追加
+```
+import ImageTable from './ImageTable';
+```
+
+`<ImageUpload/>` と `<header className="App-header">`の間に下記1行を追加
 
 ```
 <ImageTable/>
