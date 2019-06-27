@@ -1,42 +1,41 @@
 # React Webアプリケーションの作成
 
-
 ## create-react-appコマンドによるReactアプリの作成
 
+参考: https://github.com/facebook/create-react-app
+
 ```
-# https://github.com/facebook/create-react-app
 $ yarn global add create-react-app
 
 $ create-react-app myapp
+
 $ cd myapp
-
-$ yarn start
-
-# Preview > Preview Running Applicationでプレビューする
-# Ctrl + C で止める
+```
+「開発サーバー」を使用して、Webアプリケーションを起動する
 
 ```
+$ yarn start
+```
+
+- Cloud9のメニュー ＞ Preview ＞ Preview Running Application でプレビューできる
+- 「開発サーバー」を`Ctrl + C` (`Control`キーを押しながら`C`を押す)で止める
 
 ## AWS Amplifyの導入
+
+https://aws-amplify.github.io/docs/cli/init
 
 ```
 $ yarn add aws-amplify aws-amplify-react
 
-# Amplify CLI
-# ちなみに @ がついているのは NPM の 'scoped packages'
-$ yarn global add @aws-amplify/cli
+```
 
-# amplify initを実行する前にdefault のプロファイルのcredentialsとconfigを作る
-# https://github.com/aws-amplify/amplify-cli/issues/1138
-# 具体的には、cloud9の中では、aws configureを実行し、outputをjsonにセットすればよい
-$ aws configure set default.region ap-northeast-1
-$ aws configure set default.output json
+## Amplifyのセットアップ
 
-# https://aws-amplify.github.io/docs/cli/init
+下記の「:」以下を入力または選択する。
 
-# 下記の「:」以下を入力または選択する。
-# デフォルト値が()内に表示され、それを使用する場合はEnterで進める。
+2つ目の質問(environment)のみ`dev`と入力し、その他はすべてエンターキーで進めてよい。
 
+```
 $ amplify init
   ? Enter a name for the project: myapp
   ? Enter a name for the environment: dev
