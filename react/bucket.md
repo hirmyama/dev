@@ -1,7 +1,19 @@
-バケット
+# S3バケットの作成
 
-- アップされたらSNSトピックに通知
-- CORS設定
+「開発サーバー」を停止(Ctrl+C)
+
+Cloud9のenvironmentの中に`PhotoBucket`フォルダを作成する。
+
+また、PhotoBucket内部に、CloudFormationが使用するtemplate.ymlを作成する
+
+```
+$ mkdir ~/environment/PhotoBucket
+$ touch ~/environment/PhotoBucket/template.yml
+```
+
+注意：作成したフォルダやファイルがCloud9画面左のファイル一覧に反映されない場合は、最上位のenvironmentをダブルクリックで開閉する。
+
+template.ymlを開き、以下を記入
 
 ```
 Resources:
@@ -46,37 +58,15 @@ Outputs:
       Name: MyTopicArn
 ```
 
-SNSをトリガーとするSAM関数
+ファイルを保存する。
+
+CloudFormationを使用してバケットを作成する
+```
+$ aws cloudformation create-stack --template-body file://~/environment/PhotoBucket/template.yml --stack-name photo-bucket
 
 ```
-Resources:
-  HelloFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Events:
-        PhotoUpload:
-          Type: SNS
-          Properties:
-            Topic: !ImportValue MyTopicArn
-
+スタックの作成の完了を待つ（下記コマンドを打ち込むとしばらく待機状態になる。次の`$`が表示されてコマンドが打ち込める状態になるまで待つ）
+```
+$ aws cloudformation wait stack-create-complete --stack-name photo-bucket
 ```
 
-SAM関数でSNSメッセージからS3イベントを取り出す例
-
-```
-def lambda_handler(event, context):
-    pprint('***')
-    pprint(event)
-    for record in event['Records']:
-        s3event = json.loads(record['Sns']['Message'])
-        pprint('***')
-        pprint(s3event)
-        for s3record in s3event['Records']:
-            bucket = s3record['s3']['bucket']['name']
-            key = s3record['s3']['object']['key']
-            pprint('***')
-            pprint(bucket)
-            pprint('***')
-            pprint(key)
-            
-```
