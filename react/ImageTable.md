@@ -1,8 +1,17 @@
-App.jsに,import文と、ListImages APIの設定を追記
+# 画像一覧機能の作成
 
 ```
+$ touch ~/environment/myapp/src/ImageTable.js
+```
+
+ImageTable.jsを開く。
+
+下記の内容を記入する。
+
+```
+import React from 'react';
+import Amplify from 'aws-amplify';
 import { API } from 'aws-amplify';
-import { S3Image } from 'aws-amplify-react';
 
 Amplify.configure({
   API: {
@@ -14,10 +23,7 @@ Amplify.configure({
     ]
   }
 });
-```
 
-App.jsに,画像を表示するコンポーネントを追加
-```
 class ImageTable extends React.Component {
   state = {
     images: []
@@ -62,19 +68,17 @@ class ImageRow extends React.Component {
   }
 }
 
+export default ImageTable;
+
 ```
 
-ImageTableの描画部分をAppに追加
+`App.js`を開き、`<ImageUpload/>` と `<header className="App-header">`の間に下記1行を追加
+
 ```
-function App() {
-  ...
-        <ImageUpload />
-        <ImageTable />
-  ...
-}
+<ImageTable/>
 ```
 
-App.cssへ下記を追記
+`App.css`を開き、最下行に下記を追記
 
 ```
 
@@ -88,3 +92,4 @@ App.cssへ下記を追記
 }
 ```
 
+Webアプリケーションにアクセスして、アップロードした画像が表示されていることを確認。
