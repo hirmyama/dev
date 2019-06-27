@@ -7,8 +7,8 @@ Cloud9で操作する
 
 ```
 $ cd ~/environment
-$ sam init --runtime python3.6 --name tag-image
-$ cd tag-image
+$ sam init --runtime python3.6 --name TagImage
+$ cd TagImage
 ```
 
 `template.yaml` を開き、中身を下記に置き換える
