@@ -85,7 +85,6 @@ import ImageTable from './ImageTable';
 `App.css`を開き、最下行に下記を追記
 
 ```
-
 .images img {
   width: 400px;
   height: auto;
