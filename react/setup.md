@@ -21,11 +21,11 @@ https://yarnpkg.com/lang/ja/
 
 # 使用するコマンドの最新化
 
-以下、Cloud9環境のTerminal内で実行。「$」以降から行末までを実行する。
+以下、Cloud9環境のTerminal(bash)内で実行。「$」以降から行末までをコピー・ペーストして実行する。
 
 下記の実行例よりも新しいバージョン番号が表示される場合があるが問題ない。
 
-AWS CLI
+## AWS CLI
 ```
 $ aws --version
 aws-cli/1.16.169 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.159
@@ -36,7 +36,9 @@ $ aws --version
 aws-cli/1.16.184 Python/2.7.16 Linux/4.14.121-85.96.amzn1.x86_64 botocore/1.12.174
 ```
 
-npm
+注意：このとき`You should consider upgrading via the 'pip install --upgrade pip' command.`と表示されるが、pipのupgradeは実行しないこと。
+
+## npm
 
 ```
 $ npm --version
@@ -48,7 +50,7 @@ $ npm --version
 6.9.0
 ```
 
-yarn
+## yarn
 
 ```
 $ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
@@ -58,7 +60,8 @@ $ yarn --version
 1.16.0
 ```
 
-yarn global addでインストールされたアプリケーションを起動できるようにする
+## yarn global addでインストールされたアプリケーションを起動できるようにする
+
 https://yarnpkg.com/en/docs/cli/global
 Adding the install location to your PATH
 
@@ -67,7 +70,7 @@ $ echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
 $ bash -l
 ```
 
-create-react-app
+## create-react-app
 ```
 $ yarn global add create-react-app
 ```
