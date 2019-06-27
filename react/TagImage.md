@@ -125,3 +125,23 @@ $ sam package --output-template-file packaged.yaml --s3-bucket $DEPLOY_BUCKET
 ```
 $ sam deploy --template-file packaged.yaml --stack-name $STACK_NAME --capabilities CAPABILITY_IAM
 ```
+
+開発サーバーを開始
+```
+$ cd ~/environment/myapp
+$ yarn start
+```
+
+プレビューでWebアプリケーションにアクセス
+
+画像をアップロードする
+
+マネジメントコンソールのタブで、サービス＞DynamoDB＞テーブル＞tag-imageで始まるテーブル名をクリック
+
+[項目] タブをクリック
+
+画像が認識され、自動的にタグが付けられていることが確認できる。
+
+注意：画像認識機能を追加する以前にアップロードした画像については、このテーブルには表示されないが、それらの画像は再度アップロードすればよい。
+
+
