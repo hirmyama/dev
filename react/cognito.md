@@ -20,7 +20,13 @@ $ amplify push
 ? Are you sure you want to continue? (Y/n) Yes
 ```
 
-`myapp/src/App.js`のimportとfunctionの間に以下を追記
+`myapp/src/App.js`を開く
+
+```
+c9 open ~/environment/myapp/src/App.js
+```
+
+importとfunctionの間に以下を追記
 
 ```
 import Amplify from 'aws-amplify';
