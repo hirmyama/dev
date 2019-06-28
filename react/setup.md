@@ -110,3 +110,18 @@ $ sudo pip install --upgrade aws-sam-cli
 $ sam --version
 SAM CLI, version 0.17.0
 ```
+
+# まとめて実行
+
+```
+sudo pip install --upgrade awscli
+aws configure set default.output json
+npm install -g npm
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo yum install -y yarn
+echo 'export PATH="$PATH:$(yarn global bin)"' >> ~/.bash_profile
+export PATH="$PATH:$(yarn global bin)"
+yarn global add create-react-app
+yarn global add @aws-amplify/cli
+sudo pip install --upgrade aws-sam-cli
+```
