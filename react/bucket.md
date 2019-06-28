@@ -13,7 +13,13 @@ $ touch ~/environment/PhotoBucket/template.yml
 
 注意：作成したフォルダやファイルがCloud9画面左のファイル一覧に反映されない場合は、最上位のenvironmentをダブルクリックで開閉する。
 
-template.ymlを開き、以下を記入
+`template.yml`を開く
+
+```
+c9 open ~/environment/PhotoBucket/template.yml
+```
+
+以下を記入
 
 ```
 Resources:
