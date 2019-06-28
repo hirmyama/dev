@@ -48,8 +48,8 @@ import boto3
 
 dynamodb = boto3.resource('dynamodb')
 def lambda_handler(event, context):
-    image_table = 'tag-image-ImageTable-1RVWX4MZLSBNP' // DynamoDBのテーブル名を''内に記入
-    items = dynamodb.Table('images').scan()['Items']
+    image_table = 'tag-image-ImageTable-1RVWX4MZLSBNP' # DynamoDBのテーブル名を''内に記入
+    items = dynamodb.Table(image_table).scan()['Items']
 
     return {
         "statusCode": 200,
