@@ -21,6 +21,9 @@ https://yarnpkg.com/lang/ja/
 AWS SAM: サーバーレスアプリケーションをすばやく作成
 https://aws.amazon.com/jp/serverless/sam/
 
+c9 (Cloud9 CLI): Cloud9をc9コマンドから操作
+https://www.npmjs.com/package/c9
+
 # 使用するコマンドのインストール/最新化
 
 以下、Cloud9環境のTerminal(bash)内で実行。「$」以降から行末までをコピー・ペーストして実行する。
@@ -111,6 +114,12 @@ $ sam --version
 SAM CLI, version 0.17.0
 ```
 
+## c9
+
+```
+$ yarn global add c9
+```
+
 # まとめて実行
 
 ```
@@ -124,4 +133,6 @@ export PATH="$PATH:$(yarn global bin)"
 yarn global add create-react-app
 yarn global add @aws-amplify/cli
 sudo pip install --upgrade aws-sam-cli
+yarn global add c9
+echo ok
 ```
