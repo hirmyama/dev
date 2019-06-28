@@ -11,6 +11,8 @@ cd ListImages
 `template.yaml` を開き、中身を下記に置き換える
 
 ```
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
 Globals:
   Api:
     Cors:
