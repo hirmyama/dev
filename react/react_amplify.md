@@ -46,5 +46,21 @@ $ amplify init
   ? Start Command: npm run-script start
   ? Do you want to use an AWS profile? : Yes
   ? Please choose the profile you want to use: default
+  
+Initializing project in the cloud...         <---- しばらく待つ
+
+Initialized your environment successfully.   <---- この表示が出ればOK
+
+Your project has been successfully initialized and connected to the cloud!
+
+Some next steps:
+"amplify status" will show you what you've added already and if it's locally configured or deployed
+"amplify <category> add" will allow you to add features like user login or a backend API
+"amplify push" will build all your local backend resources and provision it in the cloud
+"amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+Pro tip:
+Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
+
 ```
 
