@@ -72,6 +72,7 @@ Try "amplify add api" to create a backend API and then "amplify publish" to depl
 - 各コマンドを正しいディレクトリで実行する
   - 新しくターミナルを開いた場合、カレントディレクトリが ~/environment となる
   - cd コマンドを実行すると、カレントディレクトリが ~/ となる
+  - `yarn add`や`amplify init`は、`myapp` 以下で実行する必要がある。
 - コマンドを実行したときのふるまい
   - 処理が成功した場合は何も表示しないコマンドが多い。
   - 処理が失敗した場合はなんらかしらのエラーメッセージが表示されるので、それをよく見て対処する
