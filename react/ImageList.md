@@ -36,7 +36,6 @@ Resources:
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.6
-      # ポリシーを追加
       Policies:
         - AmazonDynamoDBReadOnlyAccess
       Events:
@@ -45,6 +44,11 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+Outputs:
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+
 ```
 
 ファイルを保存。
