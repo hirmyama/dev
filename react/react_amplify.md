@@ -5,16 +5,13 @@
 https://github.com/facebook/create-react-app
 
 ```
-$ cd ~/environment
-
-$ create-react-app myapp
-
-$ cd myapp
+create-react-app myapp
+cd myapp
 ```
 「開発サーバー」を使用して、Webアプリケーションを起動する
 
 ```
-$ yarn start
+yarn start
 ```
 
 - Cloud9のメニュー ＞ Preview ＞ Preview Running Application でプレビューできる
@@ -25,20 +22,22 @@ $ yarn start
 https://aws-amplify.github.io/docs/cli/init
 
 ```
-$ yarn add aws-amplify aws-amplify-react
+yarn add aws-amplify aws-amplify-react
 ```
 
 ## Amplifyのセットアップ
 
-下記の「:」以下を入力または選択する。
-
+```
+amplify init
+```
 2つ目の質問(environment)のみ`dev`と入力し、その他はすべてエンターキーで進めてよい。
 
+(実行例)
 ```
 $ amplify init
-  ? Enter a name for the project: myapp
-  ? Enter a name for the environment: dev
-  ? Choose your default editor: None
+  ? Enter a name for the project: myapp      <---- エンターキーを押す
+  ? Enter a name for the environment: dev    <---- 2つ目の質問(environment)で dev と入力
+  ? Choose your default editor: None         <---- エンターキーを押す。以下同様
   ? Choose the type of app that you're building: javascript
   ? What javascript framework are you using: react
   ? Source Directory Path: src
