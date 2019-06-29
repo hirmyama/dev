@@ -5,13 +5,24 @@ Cloud9で操作する
 
 開発サーバーをCtrl+Cで停止。
 
+SAMを使用して、サーバーレスアプリケーションTagImageを作成
+
 ```
 $ cd ~/environment
 $ sam init --runtime python3.6 --name TagImage
 $ cd TagImage
 ```
 
-`template.yaml` を開き、中身を下記に置き換える
+`template.yaml` を開く
+
+```
+c9 open ~/environment/TagImage/template.yaml
+```
+
+
+
+
+内容を下記に置き換える
 
 ```
 AWSTemplateFormatVersion: '2010-09-09'
@@ -57,7 +68,13 @@ Resources:
 ```
 ファイルを保存。
 
-hello_world/app.py を開き、中身を下記に置き換える
+hello_world/app.py を開く
+
+```
+c9 open ~/environment/TagImage/hello_world/app.py
+```
+
+中身を下記に置き換える
 
 ```
 import json
@@ -107,10 +124,7 @@ def lambda_handler(event, context):
 
 デプロイ用のバケットを作成する
 ```
-$ STACK_NAME='tag-image'
-$ CURRENT_DATETIME=`date +'%Y%m%d%H%M%S'`
-$ DEPLOY_BUCKET="$STACK_NAME-$CURRENT_DATETIME"
-$ aws s3 mb s3://$DEPLOY_BUCKET
+$ STACK_NAME='tag-image'; CURRENT_DATETIME=`date +'%Y%m%d%H%M%S'`; DEPLOY_BUCKET="$STACK_NAME-$CURRENT_DATETIME"; aws s3 mb s3://$DEPLOY_BUCKET
 ```
 
 ビルドする
