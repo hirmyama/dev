@@ -1,4 +1,8 @@
+# 一般公開
 
+公開用のバケットを作る。
+
+質問はすべてエンターで進める。
 
 ```
 $ amplify hosting add
@@ -8,6 +12,7 @@ $ amplify hosting add
 ? error doc for the website index.html
 ```
 
+公開する
 
 ```
 $ amplify publish
@@ -21,6 +26,7 @@ Current Environment: dev
 ? Are you sure you want to continue? Yes
 ```
 
+下記のようなURLが表示される。スマホ等でアクセスしてみよう。
 
 ```
 Your app is published successfully.
