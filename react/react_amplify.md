@@ -84,3 +84,5 @@ Try "amplify add api" to create a backend API and then "amplify publish" to depl
       - その際は cd myapp と実行して、myappのディレクトリに移動することを忘れないこと
 - プレビューウィンドウを閉じる際に、そのタブのバツボタンではなく、右端のバツボタンを押してしまう
   - Ctrl + ESCで復活できる
+- ターミナル
+  - Window ＞ New Terminal で新しいターミナルを開くことができる
