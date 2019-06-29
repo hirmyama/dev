@@ -1,14 +1,23 @@
 # 画像情報を取得するAPIの作成
 
+Cloud9で操作する
 
-## プロジェクトを作成
+開発サーバーをCtrl+Cで停止。
+
+## サーバーレスアプリケーションListImagesを作成
 ```
-cd ~/environment
-sam init --runtime python3.6 --name ListImages
-cd ListImages
+$ cd ~/environment
+$ sam init --runtime python3.6 --name ListImages
+$ cd ListImages
 ```
 
-`template.yaml` を開き、中身を下記に置き換える
+`template.yaml` を開く
+
+```
+$ c9 open ~/environment/ListImages/template.yaml
+```
+
+中身を下記に置き換える
 
 ```
 AWSTemplateFormatVersion: '2010-09-09'
@@ -40,9 +49,20 @@ Resources:
 
 ファイルを保存。
 
-hello_world/app.py を開き、中身を下記に置き換える
+DynamoDBテーブル名を確認する
+```
+$ aws dynamodb list-tables --query TableNames --output text
+```
 
-注意：imagesの部分は、前工程で生成されたDynamoDBテーブル名にする
+hello_world/app.py を開く
+```
+$ c9 open ~/environment/ListImages/hello_world/app.py
+```
+
+
+中身を下記に置き換える
+
+注意：imagesの部分は、前工程で確認したDynamoDBテーブル名にする
 
 ```
 import json
@@ -66,9 +86,7 @@ def lambda_handler(event, context):
 
 デプロイ用のバケットを作成する
 ```
-$ STACK_NAME='list-images'
-$ CURRENT_DATETIME=`date +'%Y%m%d%H%M%S'`
-$ DEPLOY_BUCKET="$STACK_NAME-$CURRENT_DATETIME"
+$ STACK_NAME='list-images';CURRENT_DATETIME=`date +'%Y%m%d%H%M%S'`;DEPLOY_BUCKET="$STACK_NAME-$CURRENT_DATETIME"
 $ aws s3 mb s3://$DEPLOY_BUCKET
 ```
 
@@ -95,20 +113,10 @@ $ aws cloudformation wait stack-create-complete --stack-name $STACK_NAME
 $ aws cloudformation describe-stacks --stack-name $STACK_NAME --query 'Stacks[].Outputs[]'
 [
     {
-        "Description": "Implicit IAM Role created for Hello World function", 
-        "OutputKey": "HelloWorldFunctionIamRole", 
-        "OutputValue": "arn:aws:iam::328243927296:role/list-images-HelloWorldFunctionRole-12XND8Z3FN6W0"
-    }, 
-    {
         "Description": "API Gateway endpoint URL for Prod stage for Hello World function", 
         "OutputKey": "HelloWorldApi", 
         "OutputValue": "https://6q5iyrihae.execute-api.ap-northeast-1.amazonaws.com/Prod/hello/"
     }, 
-    {
-        "Description": "Hello World Lambda Function ARN", 
-        "OutputKey": "HelloWorldFunction", 
-        "OutputValue": "arn:aws:lambda:ap-northeast-1:328243927296:function:list-images-HelloWorldFunction-1SJF79FIQSBGB"
-    }
 ]
 ```
 上記出力中の中央部分に、`https://`で始まるURLがある。
