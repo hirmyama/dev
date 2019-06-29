@@ -17,15 +17,17 @@ yarn start
 - Cloud9のメニュー ＞ Preview ＞ Preview Running Application でプレビューできる
 - 「開発サーバー」を`Ctrl + C` (`Control`キーを押しながら`C`を押す)で止める
 
-## WebアプリケーションにAmplifyを導入
+## WebアプリケーションにAmplifyライブラリを導入
 
-https://aws-amplify.github.io/docs/cli/init
+https://aws-amplify.github.io/docs/js/react#add-auth
 
 ```
 yarn add aws-amplify aws-amplify-react
 ```
 
 ## Amplifyのセットアップ
+
+https://aws-amplify.github.io/docs/js/react#installation
 
 ```
 amplify init
@@ -86,3 +88,11 @@ Try "amplify add api" to create a backend API and then "amplify publish" to depl
   - Ctrl + ESCで復活できる
 - ターミナル
   - Window ＞ New Terminal で新しいターミナルを開くことができる
+
+# トラブルシューティング
+- `myapp`ディレクトリがない場合
+  - create-react-appを正しく実行していない
+- `grep aws-amplify yarn.lock` で何も表示されない場合
+  - yarn addを正しく実行していない
+- `myapp/src/aws-exports.js`がない場合
+  - yarn initを正しく実行していない
