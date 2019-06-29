@@ -5,6 +5,8 @@
 https://github.com/facebook/create-react-app
 
 ```
+$ cd ~/environment
+
 $ create-react-app myapp
 
 $ cd myapp
