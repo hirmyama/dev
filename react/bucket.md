@@ -35,6 +35,7 @@ Resources:
               - x-amz-server-side-encryption
               - x-amz-request-id
               - x-amz-id-2
+              - ETag
             MaxAge: 3000
       NotificationConfiguration:
         TopicConfigurations:
