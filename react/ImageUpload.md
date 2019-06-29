@@ -30,7 +30,13 @@ $ aws s3 ls |grep photo-bucket
 $ touch ~/environment/myapp/src/ImageUpload.js
 ```
 
-`ImageUpload.js` を開き、下記を入力する。バケット名の部分は上記手順で調べたバケット名に書き換える。
+`ImageUpload.js` を開く
+
+```
+c9 open ~/environment/myapp/src/ImageUpload.js
+```
+
+下記を入力する。バケット名の部分は上記手順で調べたバケット名に書き換える。
 
 ```
 import React from 'react';
@@ -72,7 +78,12 @@ export default ImageUpload;
 
 確認：バケット名の部分を書き換えましたか？
 
-`App.js`を開く。ファイル先頭のimport部分に下記を追加
+`App.js`を開く。
+```
+c9 open ~/environment/myapp/src/App.js
+```
+
+ファイル先頭のimport部分に下記を追加
 ```
 import ImageUpload from './ImageUpload';
 ```
