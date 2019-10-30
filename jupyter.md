@@ -25,6 +25,8 @@ amazon-linux-extras install -y python3
 python3 -m pip install --upgrade pip
 python3 -m pip install jupyterlab boto3 awscli bash_kernel
 python3 -m bash_kernel.install
+curl -sL https://rpm.nodesource.com/setup_12.x | bash -
+yum install -y nodejs
 aws configure set default.region ap-northeast-1
 cd /home/ec2-user
 jupyter lab --ip='0.0.0.0' --allow-root --port=80 --NotebookApp.token='Yamada3!'
