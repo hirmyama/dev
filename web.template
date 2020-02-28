@@ -1,0 +1,88 @@
+{
+  "Description" : "create vpc",
+  "Resources" : {
+    "TestVpc" : {
+      "Type" : "AWS::EC2::VPC",
+      "Properties" : {
+        "CidrBlock" : "10.0.0.0/16",
+        "Tags" : [ {"Key" : "Name", "Value" : "Test VPC"} ]
+      }
+    },
+    "InternetGateway" : {
+      "Type" : "AWS::EC2::InternetGateway"
+    },
+    "InternetGatewayAttachment" : {
+      "Type" : "AWS::EC2::VPCGatewayAttachment",
+      "Properties" : {
+        "VpcId" : {"Ref" : "TestVpc"},
+        "InternetGatewayId" : {"Ref" : "InternetGateway"}
+      }
+    },
+    "PublicSubnet1" : {
+      "Type" : "AWS::EC2::Subnet",
+      "Properties" : {
+        "CidrBlock" : "10.0.0.0/24",
+        "AvailabilityZone" : "ap-northeast-1a",
+        "VpcId" : {"Ref" : "TestVpc"},
+        "Tags" : [{"Key" : "Name", "Value" : "Public Subnet 1"}]
+      }
+    },
+    "PublicRouteTable" : {
+      "Type" : "AWS::EC2::RouteTable",
+      "Properties" : {
+        "VpcId" : { "Ref" : "TestVpc" }
+      }
+    },
+    "PublicRoute" : {
+      "Type" : "AWS::EC2::Route",
+      "Properties" : {
+        "RouteTableId" : { "Ref" : "PublicRouteTable" },
+        "DestinationCidrBlock" : "0.0.0.0/0",
+        "GatewayId" : { "Ref" : "InternetGateway" }
+      }
+    },
+    "PublicRouteTableAssociaction": {
+      "Type" : "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties" : {
+        "RouteTableId" : {"Ref": "PublicRouteTable"},
+        "SubnetId" : {"Ref": "PublicSubnet1"}
+      }
+    },
+    "WebSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Web Security Group",
+        "VpcId" : {"Ref" : "TestVpc"},
+		"SecurityGroupIngress" : [{
+         	"IpProtocol" : "tcp",
+        	"FromPort" : "80",
+        	"ToPort" : "80",
+        	"CidrIp" : "0.0.0.0/0"
+     	}],
+        "Tags" : [{"Key" : "Name", "Value" : "Web Security Group"}]
+      }
+    },
+    "WebServer": {
+      "Type" : "AWS::EC2::Instance",
+      "Properties" : {
+        "InstanceType" : "t2.micro",
+        "ImageId" : "ami-08847abae18baa040",
+        "NetworkInterfaces": [{
+          "SubnetId" : {"Ref":"PublicSubnet1"},
+          "AssociatePublicIpAddress": "true",
+          "DeviceIndex": "0",
+          "GroupSet" : [{"Ref": "WebSecurityGroup"}]
+        }],
+        "Tags" : [{"Key" : "Name", "Value" : "Web Server"}],
+        "UserData" : {
+          "Fn::Base64" : {
+            "Fn::Join" : ["", [
+              "#!/bin/bash\n",
+              "yum -y install httpd\n",
+              "systemctl --now enable httpd.service\n",
+              "echo hello > /var/www/html/index.html"
+        ]]}}
+      }
+    }
+  }
+}
